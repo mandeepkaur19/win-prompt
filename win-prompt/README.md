@@ -1,7 +1,6 @@
 # 🔍 TruthLens: AI-Powered Misinformation Detection
 
 [![Deployed on Cloud Run](https://img.shields.io/badge/Deployed-Google_Cloud_Run-blue?logo=googlecloud)](YOUR_CLOUD_RUN_URL_HERE)
-[![Firebase Hosting](https://img.shields.io/badge/Hosted-Firebase-orange?logo=firebase)](YOUR_FIREBASE_URL_HERE)
 
 > **Hackathon Submission Note:** You can test the live application here: **[(Cloud Run URL) Your Link Here]**
 
@@ -23,14 +22,14 @@ We engineered TruthLens specifically to separate the "thinking" (Orchestration) 
 ## 🚀 Key Features
 - **Zero Hallucination Guarantee:** The Verdict Generator is mechanically restricted from answering using its own pre-trained knowledge base. It can *only* evaluate based on the live Google Search context provided to it.
 - **Glass-Box Methodology:** The API returns not just a "True/False", but explicitly returns the exact `fact_checks` and `explanation` it used to reach its conclusion.
-- **Stateless & Scalable:** By offloading state to Firebase Firestore and containerizing the Python execution layer in Google Cloud Run, TruthLens can safely scale from 1 user to 10,000 concurrently.
+- **Stateless & Scalable:** By containerizing the Python API and frontend together in Google Cloud Run, TruthLens can safely scale from 1 user to 10,000 concurrently.
 
 ## 💻 Tech Stack
 *   **Google Gemini 1.5 Pro / Flash Vision** (Multi-modal inference & Structured Outputs)
 *   **Google Custom Search API** (Live Context Retrieval)
 *   **FastAPI / Python** (Orchestration Backend)
 *   **Vanilla JS / HTML / CSS** (Ultra-fast minimal frontend)
-*   **Google Cloud Run & Firebase** (Deployment Network)
+*   **Google Cloud Run** (Deployment Network)
 
 ## 🛠 How to Run Locally
 

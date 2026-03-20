@@ -5,13 +5,15 @@ param (
 
 $ImageName = "gcr.io/$ProjectId/truthlens-api"
 
+$GcloudPath = "C:\Users\HP\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin\gcloud.cmd"
+
 Write-Host "🚀 Building Docker Image and uploading to Google Container Registry..." -ForegroundColor Cyan
-gcloud builds submit --tag $ImageName
+& $GcloudPath builds submit --tag $ImageName
 
 Write-Host "🌐 Deploying TruthLens API to Google Cloud Run..." -ForegroundColor Cyan
 # Note: You will need to manually update the environment variables in the Cloud Run console 
 # or add them here before running this script for security!
-gcloud run deploy truthlens-api `
+& $GcloudPath run deploy truthlens-api `
   --image $ImageName `
   --platform managed `
   --region us-central1 `

@@ -1,19 +1,11 @@
 import os
 import json
+import re
 import google.generativeai as genai
-from pydantic import BaseModel
 from dotenv import load_dotenv
 
 load_dotenv()
 genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
-
-# Define output schema using Pydantic
-class Claim(BaseModel):
-    claim_id: str
-    claim_text: str
-
-class ClaimList(BaseModel):
-    claims: list[Claim]
 
 def analyze_claims(input_text: str) -> list[dict]:
     """
@@ -21,26 +13,27 @@ def analyze_claims(input_text: str) -> list[dict]:
     Returns a list of dicts: {"claim_id": "...", "claim_text": "..."}
     """
     try:
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-2.0-flash')
         prompt = f"""
-        Extract the core, verifiable factual claims from the following text.
-        Ignore opinions, greetings, or conversational noise.
-        If there are no verifiable claims, return an empty list.
+Extract the core, verifiable factual claims from the following text.
+Ignore opinions, greetings, or conversational noise.
+If there are no verifiable claims, return an empty list.
 
-        TEXT TO ANALYZE:
-        {input_text}
-        """
-        
+TEXT TO ANALYZE:
+{input_text}
+
+Respond ONLY with a raw JSON object (no markdown, no backticks) in this exact format:
+{{"claims": [{{"claim_id": "1", "claim_text": "<claim here>"}}]}}
+"""
         response = model.generate_content(
             prompt,
-             generation_config=genai.GenerationConfig(
-                response_mime_type="application/json",
-                response_schema=ClaimList,
-                temperature=0.1
-            )
+            generation_config=genai.GenerationConfig(temperature=0.1)
         )
-        
-        data = json.loads(response.text)
+
+        raw = response.text.strip()
+        raw = re.sub(r'^```[\w]*\n?', '', raw)
+        raw = re.sub(r'\n?```$', '', raw)
+        data = json.loads(raw.strip())
         return data.get("claims", [])
     except Exception as e:
         print(f"Error extracting claims: {e}")

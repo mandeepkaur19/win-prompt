@@ -5,6 +5,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'execution'))
 
 from fastapi import FastAPI, HTTPException, UploadFile, Form
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import Optional
 
@@ -76,6 +77,11 @@ async def analyze_input(text: Optional[str] = Form(None), file: Optional[UploadF
     final_output = format_and_store_response(verdicts)
     
     return final_output
+
+# Mount frontend to serve static files natively from the root domain
+frontend_path = os.path.join(os.path.dirname(__file__), '..', 'frontend')
+if os.path.exists(frontend_path):
+    app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
 
 if __name__ == "__main__":
     import uvicorn

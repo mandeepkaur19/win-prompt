@@ -18,7 +18,7 @@ A structured JSON response containing:
 - **Confidence level**: Categorical classification of how confident the system is in its assessment (High, Medium, Low).
 
 ## Constraints
-- **Infrastructure**: Must strictly use Google services (Gemini for reasoning/parsing, Firebase for storage/hosting).
+- **Infrastructure**: Must strictly use Google services (Gemini for reasoning/parsing, Google Cloud Run for deployment).
 - **Deployment**: Must be fully deployable as a cloud-based service (e.g., Cloud Functions or Cloud Run).
 - **Architecture**: Must follow a 3-layer architecture (Directive, Orchestration, Execution).
 - **Code Quality**: Must be modular, independent, testable components.

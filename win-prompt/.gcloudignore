@@ -1,0 +1,7 @@
+.env
+firebase_admin.json
+frontend/
+.git
+.gitignore
+__pycache__/
+*.pyc

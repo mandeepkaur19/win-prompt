@@ -25,7 +25,8 @@ document.getElementById('analyzeForm').addEventListener('submit', async (e) => {
     if (fileInput) formData.append('file', fileInput);
 
     try {
-        const response = await fetch('http://localhost:8080/analyze', {
+        // Use a relative path, so it works seamlessly on local dev server and Cloud Run
+        const response = await fetch('/analyze', {
             method: 'POST',
             body: formData
         });
