@@ -1,8 +1,8 @@
 # 🔍 TruthLens: AI-Powered Misinformation Detection
 
-[![Deployed on Cloud Run](https://img.shields.io/badge/Deployed-Google_Cloud_Run-blue?logo=googlecloud)](YOUR_CLOUD_RUN_URL_HERE)
+[![Deployed on Cloud Run](https://img.shields.io/badge/Deployed-Google_Cloud_Run-blue?logo=googlecloud)](https://truthlens-93589825973.us-central1.run.app)
 
-> **Hackathon Submission Note:** You can test the live application here: **[(Cloud Run URL) Your Link Here]**
+> **Hackathon Submission Note:** You can test the live application here: **[https://truthlens-93589825973.us-central1.run.app](https://truthlens-93589825973.us-central1.run.app)**
 
 TruthLens is a deterministic, highly-scalable fact-checking engine built to process messy, real-world inputs (like WhatsApp forward screenshots or text claims) and evaluate them strictly against live Google Search data to minimize LLM hallucination.
 
