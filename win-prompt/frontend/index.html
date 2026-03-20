@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruthLens</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>TruthLens.</h1>
+            <p>AI-Powered Misinformation Detection</p>
+        </header>
+
+        <main>
+            <form id="analyzeForm">
+                <div class="input-group">
+                    <label for="textInput">Analyze a Text Claim</label>
+                    <textarea id="textInput" name="text" placeholder="Paste a news headline, quote, or rumored fact..." rows="4"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="fileInput">Or Analyze an Image (Meme, WhatsApp forward)</label>
+                    <input type="file" id="fileInput" name="file" accept="image/*">
+                </div>
+
+                <button type="submit" id="analyzeBtn">Analyze Truth</button>
+            </form>
+
+            <div id="loadingState" class="hidden">
+                <div class="glow-spinner"></div>
+                <p id="loadingMsg">Extracting claims & cross-referencing live sources...</p>
+            </div>
+
+            <div id="errorState" class="hidden">
+                <p id="errorMsg"></p>
+            </div>
+
+            <div id="resultState" class="hidden">
+                <h3 style="margin-bottom: 20px; font-weight: 600; color: #cbd5e1;">Analysis Results</h3>
+                <div id="cardsContainer"></div>
+            </div>
+        </main>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+**/.env
+**/firebase_admin.json
+**/__pycache__/
+**/.firebase/
+test_diag.py
+test_search_key.py
